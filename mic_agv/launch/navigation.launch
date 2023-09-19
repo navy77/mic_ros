@@ -1,0 +1,20 @@
+<launch>
+  
+  <!-- bring up -->
+  <include file="$(find mic_agv)/launch/bring_up.launch"/>
+
+  <!-- map select -->
+  <arg name="map_file" default="$(find mic_agv)/maps/mic_bpi_1.yaml" />
+
+  <!-- Map server -->
+  <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)" />
+
+  <!-- AMCL -->
+  <include file="$(find mic_agv)/launch/amcl.launch"/>
+
+  <!-- move_base -->
+  <include file="$(find mic_agv)/launch/move_base.launch"/>
+  
+  <!-- mqtt -->
+ <!-- <node name="nav_goal" pkg="mic_agv" type="navigation.py" /> -->
+</launch>
